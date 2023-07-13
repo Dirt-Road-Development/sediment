@@ -1,0 +1,5 @@
+{
+    "id": "xxxx-xxxx-xxxx",
+    "players": ["id-1", "id-2"],
+    "scores": [2, 6]
+}

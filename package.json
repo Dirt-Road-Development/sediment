@@ -1,0 +1,13 @@
+{
+  "name": "@dirtroad/sediment",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@openzeppelin/contracts": "^4.9.2",
+    "add": "^2.0.6",
+    "dotenv": "^16.3.1",
+    "hardhat": "^2.16.1",
+    "hardhat-deploy": "^0.11.34",
+    "hardhat-deploy-ethers": "^0.4.1",
+    "solidity-coverage": "^0.8.4"
+  }
+}
