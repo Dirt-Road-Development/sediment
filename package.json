@@ -1,5 +1,11 @@
 {
   "name": "@dirtroad/sediment",
+  "version": "0.1.0",
+  "author": {
+    "name": "TheGreatAxios",
+    "url": "https://github.com/TheGreatAxios",
+    "email": "sawyer@dirtroad.dev"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@openzeppelin/contracts": "^4.9.2",
