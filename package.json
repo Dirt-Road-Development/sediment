@@ -6,6 +6,11 @@
     "url": "https://github.com/TheGreatAxios",
     "email": "sawyer@dirtroad.dev"
   },
+  "license": "MIT",
+  "funding": {
+    "type": "individual",
+    "url": "https://buymeacoffee.com/thegreataxios"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@openzeppelin/contracts": "^5.0.2",
