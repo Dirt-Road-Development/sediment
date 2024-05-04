@@ -73,6 +73,7 @@ contract BotProtection is Authority {
             cooldown = 0;
             strikes = 0;
         }
+        
         if (protectionLevel == ProtectionLevel.LOW) {
             cooldown = 60 seconds;
             strikes = 5;
