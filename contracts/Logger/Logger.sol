@@ -10,19 +10,19 @@ contract Logger is Authority {
     event Info(bytes32 indexed id, string indexed value, uint64 indexed timestamp);
     event Warn(bytes32 indexed id, string indexed value, uint64 indexed timestamp);
 
-    function debugLog(string memory value) external onlyRole(CONTRACT_ROLE) {
+    function debugLog(string memory value) internal {
         emit Debug(keccak256(abi.encodePacked(value, uint64(block.timestamp))), value, uint64(block.timestamp));    
     }
 
-    function errorLog(string memory value) external onlyRole(CONTRACT_ROLE) {
+    function errorLog(string memory value) internal {
         emit Error(keccak256(abi.encodePacked(value, uint64(block.timestamp))), value, uint64(block.timestamp));    
     }
 
-    function infoLog(string memory value) external onlyRole(CONTRACT_ROLE) {
+    function infoLog(string memory value) internal {
         emit Info(keccak256(abi.encodePacked(value, uint64(block.timestamp))), value, uint64(block.timestamp));    
     }
 
-    function warnLog(string memory value) external onlyRole(CONTRACT_ROLE) {
+    function warnLog(string memory value) internal {
         emit Warn(keccak256(abi.encodePacked(value, uint64(block.timestamp))), value, uint64(block.timestamp));    
     }
 }

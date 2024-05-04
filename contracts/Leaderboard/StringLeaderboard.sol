@@ -3,10 +3,10 @@ pragma solidity ^0.8.25;
 
 import "../Authority/Authority.sol";
 
-contract Web2BytesLeaderboard is Authority {
+contract StringLeaderboard is Authority {
 
     struct User {
-        bytes32 user;
+        string user;
         uint64 highScore;
         uint64 timestamp;
         uint32 index;
@@ -20,15 +20,15 @@ contract Web2BytesLeaderboard is Authority {
 
     event IncrementalReset(uint32 indexed amount);
     event Reset();
-    event SubmitScore(bytes32 indexed user, uint64 indexed highScore);
-    event SubmitScoreAndAdd(bytes32 indexed user, uint64 indexed highScore);
+    event SubmitScore(string indexed user, uint64 indexed highScore);
+    event SubmitScoreAndAdd(string indexed user, uint64 indexed highScore);
 
     constructor(uint32 _maxLength) {
         maxLength = _maxLength;
         paused = false;
     }
 
-    function submitScore(bytes32 user, uint64 highScore) external onlyRole(SERVER_ROLE) {
+    function submitScore(string memory user, uint64 highScore) external onlyRole(SERVER_ROLE) {
         if (paused) revert("Submitted Scores is Paused");
         if (length() >= maxLength && highScore <= leaderboard[length() - 1].highScore) {
             emit SubmitScore(user, highScore);
@@ -43,7 +43,7 @@ contract Web2BytesLeaderboard is Authority {
         return uint32(leaderboard.length);
     }
 
-    function _addToLeaderboard(bytes32 user, uint64 highScore, uint32 index) internal {
+    function _addToLeaderboard(string memory user, uint64 highScore, uint32 index) internal {
         leaderboard.push(User(user, highScore, uint64(block.timestamp), index));
         emit SubmitScoreAndAdd(user, highScore);
     }

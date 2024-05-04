@@ -3,7 +3,7 @@ pragma solidity ^0.8.25;
 
 import "../Authority/Authority.sol";
 
-contract Web3Leaderboard is Authority {
+contract Leaderboard is Authority {
 
     struct User {
         address user;
