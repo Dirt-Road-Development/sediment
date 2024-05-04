@@ -46,7 +46,8 @@ contract BotProtection is Authority {
     }
 
     event RemoveFromBlacklist(address[] addresses);
-    event SetProtectionLevel(ProtectionLevel protectionLevel);
+    event SetProtectionLevel(ProtectionLevel indexed protectionLevel);
+    event ToggleBlacklist(bool indexed enabled);
 
     /**
      * @dev Constructor to initialize the contract with protection level and blacklist usage.
@@ -110,5 +111,13 @@ contract BotProtection is Authority {
      */
     function setProtectionLevel(ProtectionLevel protectionLevel) external onlyRole(MANAGER_ROLE) {
         _setProtectionLevel(protectionLevel);
+    }
+
+    /**
+     * @dev Function to toggle the blacklist on/off.
+     */
+    function toggleBlacklist() external onlyRole(MANAGER_ROLE) {
+        useBlacklist = !useBlacklist;
+        emit ToggleBlacklist(useBlacklist);
     }
 }
