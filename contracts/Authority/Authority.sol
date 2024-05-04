@@ -3,29 +3,33 @@ pragma solidity ^0.8.25;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
+/// @title Authority
+/// @author Dirt Road Development
+/// @notice A contract that defines various roles for access control
+/// @dev This contract inherits from the OpenZeppelin AccessControl contract
 contract Authority is AccessControl {
-
-    /// @notice For contracts that need to whitelist users
+    /// @notice Role for contracts that need to blacklist users
     bytes32 public constant BLACKLIST_ROLE = keccak256("BLACKLIST_ROLE");
 
-    /// @notice For contracts to call contracts
+    /// @notice Role for contracts to call other contracts
     bytes32 public constant CONTRACT_ROLE = keccak256("CONTRACT_ROLE");
 
-    /// @notice For creator of new assets in NFT based contracts
+    /// @notice Role for creators of new assets in NFT-based contracts
     bytes32 public constant CREATOR_ROLE = keccak256("CREATOR_ROLE");
 
-    /// @notice For key manual management of a smart contracts
+    /// @notice Role for key manual management of smart contracts
     bytes32 public constant MANAGER_ROLE = keccak256("MANAGER_ROLE");
 
-    /// @notice For token based contracts that have a growing supply
+    /// @notice Role for token-based contracts that have a growing supply
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-    /// @notice For contracts that have server's managing functions
+    /// @notice Role for contracts that have server's managing functions
     bytes32 public constant SERVER_ROLE = keccak256("SERVER_ROLE");
 
-    /// @notice For contracts that need to whitelist users
+    /// @notice Role for contracts that need to whitelist users
     bytes32 public constant WHITELIST_ROLE = keccak256("WHITELIST_ROLE");
 
+    /// @notice Constructor that grants all defined roles to the deployer
     constructor() {
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _grantRole(BLACKLIST_ROLE, _msgSender());
