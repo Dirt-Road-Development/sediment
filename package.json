@@ -11,6 +11,10 @@
     "type": "individual",
     "url": "https://buymeacoffee.com/thegreataxios"
   },
+  "bugs": {
+    "url": "https://github.com/Dirt-Road-Development/sediment/issues",
+    "email": "code@dirtroad.dev"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@openzeppelin/contracts": "^5.0.2",
