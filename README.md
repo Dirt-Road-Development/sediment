@@ -13,7 +13,7 @@ npm add @dirtroad/sediment```
 Then important according to each of the modules:
 
 ### Modules
-
+<!-- 
 #### History
 
 To add the history module to your project, add the following into your Solidity file:
@@ -32,7 +32,7 @@ To add the store module to your project, add the following into your Solidity fi
 ...
 import "@dirtroad/sediment/contracts/store/Store.sol";
 ...
-```
+``` -->
 
 ### Security and Liability
 
