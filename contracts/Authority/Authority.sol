@@ -8,6 +8,9 @@ contract Authority is AccessControl {
     /// @notice For contracts that need to whitelist users
     bytes32 public constant BLACKLIST_ROLE = keccak256("BLACKLIST_ROLE");
 
+    /// @notice For contracts to call contracts
+    bytes32 public constant CONTRACT_ROLE = keccak256("CONTRACT_ROLE");
+
     /// @notice For creator of new assets in NFT based contracts
     bytes32 public constant CREATOR_ROLE = keccak256("CREATOR_ROLE");
 
