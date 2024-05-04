@@ -5,7 +5,7 @@ import "hardhat-deploy-ethers";
 import "solidity-coverage";
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.18",
+  solidity: "0.8.25",
 };
 
 export default config;
