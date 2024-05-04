@@ -1,6 +1,8 @@
 # Sediment
 
-Sediment is a set of smart-contracts designed to abstract on-chain data storage through a number of basic unopinionated flows.
+Sediment is a smart contract library for Solidity and the EVM offering 
+various building-blocks for projects and EVM chains to offer commonly requested
+functionality.
 
 ## Installation
 
