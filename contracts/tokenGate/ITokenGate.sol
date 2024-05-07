@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.25;
+pragma solidity >=0.8.0 <0.9.0;
 
 /// @title ITokenGate
 /// @notice Interface for the TokenGate contract that provides functions to check if an address holds specific tokens
