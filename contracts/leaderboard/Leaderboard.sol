@@ -37,7 +37,7 @@ contract Leaderboard is Authority {
     /// @param user The Ethereum address of the user
     /// @param highScore The new high score to be submitted
     /// @dev Only callable by the SERVER_ROLE
-    function submitScore(address user, uint64 highScore) external onlyRole(SERVER_ROLE) {
+    function submitScore(address user, uint64 highScore) public virtual onlyRole(SERVER_ROLE) {
         if (paused) revert("Submitted Scores is Paused");
         if (length() >= maxLength && highScore <= leaderboard[length() - 1].highScore) {
             emit SubmitScore(user, highScore);
@@ -76,7 +76,7 @@ contract Leaderboard is Authority {
     /// @notice Perform an incremental reset of the leaderboard
     /// @dev Only callable by the MANAGER_ROLE
     /// @dev Removes up to 1,500 entries from the leaderboard
-    function incrementalReset() external onlyRole(MANAGER_ROLE) {
+    function incrementalReset() public virtual onlyRole(MANAGER_ROLE) {
         if (!paused) paused = true;
         uint32 removalAmount = length() > 1500 ? 1500 : length();
         for (uint32 i = 0; i < removalAmount; i++) {
