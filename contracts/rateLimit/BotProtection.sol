@@ -72,7 +72,7 @@ contract BotProtection is Authority {
      * @dev Internal function to set protection level parameters.
      * @param protectionLevel The protection level to set.
      */
-    function _setProtectionLevel(ProtectionLevel protectionLevel) internal {
+    function _setProtectionLevel(ProtectionLevel protectionLevel) internal virtual {
         if (protectionLevel == ProtectionLevel.OFF) {
             cooldown = 0;
             strikes = 0;
@@ -102,7 +102,7 @@ contract BotProtection is Authority {
      * @dev Function to remove addresses from blacklist.
      * @param addresses The addresses to remove from blacklist.
      */
-    function removeFromBlacklist(address[] memory addresses) external onlyRole(MANAGER_ROLE) {
+    function removeFromBlacklist(address[] memory addresses) public virtual onlyRole(MANAGER_ROLE) {
         for (uint256 i = 0; i < addresses.length; i++) {
             limits[addresses[i]].isBlacklisted = false;
         }
@@ -114,14 +114,14 @@ contract BotProtection is Authority {
      * @dev Function to set the protection level.
      * @param protectionLevel The protection level to set.
      */
-    function setProtectionLevel(ProtectionLevel protectionLevel) external onlyRole(MANAGER_ROLE) {
+    function setProtectionLevel(ProtectionLevel protectionLevel) public virtual onlyRole(MANAGER_ROLE) {
         _setProtectionLevel(protectionLevel);
     }
 
     /**
      * @dev Function to toggle the blacklist on/off.
      */
-    function toggleBlacklist() external onlyRole(MANAGER_ROLE) {
+    function toggleBlacklist() public virtual onlyRole(MANAGER_ROLE) {
         useBlacklist = !useBlacklist;
         emit ToggleBlacklist(useBlacklist);
     }

@@ -46,7 +46,7 @@ contract Logger is Authority {
      * @dev Internal function to log a debug message.
      * @param value The debug message to be logged.
      */
-    function debugLog(string memory value) internal {
+    function debugLog(string memory value) internal virtual {
         emit Debug(keccak256(abi.encodePacked(value, uint64(block.timestamp))), value, uint64(block.timestamp));    
     }
     
@@ -54,7 +54,7 @@ contract Logger is Authority {
      * @dev Internal function to log an error message.
      * @param value The error message to be logged.
      */
-    function errorLog(string memory value) internal {
+    function errorLog(string memory value) internal virtual {
         emit Error(keccak256(abi.encodePacked(value, uint64(block.timestamp))), value, uint64(block.timestamp));    
     }
     
@@ -62,7 +62,7 @@ contract Logger is Authority {
      * @dev Internal function to log an informational message.
      * @param value The informational message to be logged.
      */
-    function infoLog(string memory value) internal {
+    function infoLog(string memory value) internal virtual {
         emit Info(keccak256(abi.encodePacked(value, uint64(block.timestamp))), value, uint64(block.timestamp));    
     }
     
@@ -70,7 +70,7 @@ contract Logger is Authority {
      * @dev Internal function to log a warning message.
      * @param value The warning message to be logged.
      */
-    function warnLog(string memory value) internal {
+    function warnLog(string memory value) internal virtual {
         emit Warn(keccak256(abi.encodePacked(value, uint64(block.timestamp))), value, uint64(block.timestamp));    
     }
 }

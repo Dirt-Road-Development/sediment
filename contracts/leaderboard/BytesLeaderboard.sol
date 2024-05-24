@@ -57,7 +57,7 @@ contract BytesLeaderboard is Authority {
     /// @param user The bytes32 identifier of the user
     /// @param highScore The new high score to be added
     /// @param index The index at which the new user should be inserted
-    function _addToLeaderboard(bytes32 user, uint64 highScore, uint32 index) internal {
+    function _addToLeaderboard(bytes32 user, uint64 highScore, uint32 index) internal virtual {
         leaderboard.push(User(user, highScore, uint64(block.timestamp), index));
         emit SubmitScoreAndAdd(user, highScore);
     }
@@ -89,7 +89,7 @@ contract BytesLeaderboard is Authority {
     /// @param arr The leaderboard array to be sorted
     /// @param left The left index of the subarray to be sorted
     /// @param right The right index of the subarray to be sorted
-    function _sort(User[] memory arr, int256 left, int256 right) internal {
+    function _sort(User[] memory arr, int256 left, int256 right) internal virtual {
         int256 i = left;
         int256 j = right;
         if (i == j) return;
