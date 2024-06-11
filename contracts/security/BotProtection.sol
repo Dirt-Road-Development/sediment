@@ -40,9 +40,8 @@ contract BotProtection is Authority {
                 limits[addr].strikes++;
             }
             limits[addr].lastRequest = uint64(block.timestamp);
+            return 
         }
-
-        require(ok, "Rate Limit Hit");
 
         _;
 
