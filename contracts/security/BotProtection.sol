@@ -36,7 +36,7 @@ contract BotProtection is Authority {
         require(!limits[addr].isBlacklisted, "Address is blacklisted");
         
         bool ok = uint64(block.timestamp) - limits[addr].lastRequest >= cooldown;
-        limits[addr].lastRequest = uint64(block.timestamp);
+        
         if (!ok) {
             if (limits[addr].strikes + 1 >= strikes) {
                 if (useBlacklist) limits[addr].isBlacklisted = true;
@@ -49,6 +49,7 @@ contract BotProtection is Authority {
             return;
         } else {
             limits[addr].strikes = 0;
+            limits[addr].lastRequest = uint64(block.timestamp); // Update after successful check
         }
 
         _;
