@@ -23,6 +23,9 @@ contract BotProtection is Authority {
 
     mapping(address => Limit) public limits;
 
+    event AddToBlacklist(address indexed addr);
+    event AddStrike(address indexed addr, uint256 indexed strike);
+
     /**
      * @dev Modifier to check for bot activity and apply rate limiting.
      * @param addr The address to check for bot activity.
@@ -31,21 +34,20 @@ contract BotProtection is Authority {
         require(!limits[addr].isBlacklisted, "Address is blacklisted");
 
         bool ok = limits[addr].lastRequest + cooldown >= uint64(block.timestamp);
-
+        limits[addr].lastRequest = uint64(block.timestamp);
         if (!ok) {
             if (limits[addr].strikes + 1 >= strikes) {
                 if (useBlacklist) limits[addr].isBlacklisted = true;
+                emit AddToBlacklist(addr);
 
             } else {
                 limits[addr].strikes++;
+                emit AddStrike(addr, limits[addr].strikes);
             }
-            limits[addr].lastRequest = uint64(block.timestamp);
             return;
         }
 
         _;
-
-        limits[addr].lastRequest = uint64(block.timestamp);
     }
 
     event RemoveFromBlacklist(address[] addresses);
@@ -78,19 +80,19 @@ contract BotProtection is Authority {
         }
         
         if (protectionLevel == ProtectionLevel.LOW) {
-            cooldown = 60 seconds;
-            strikes = 5;
+            cooldown = 10 seconds;
+            strikes = 3;
         }
         if (protectionLevel == ProtectionLevel.MEDIUM) {
-            cooldown = 5 minutes;
-            strikes = 5;
+            cooldown = 30 seconds;
+            strikes = 3;
         }
         if (protectionLevel == ProtectionLevel.HIGH) {
-            cooldown = 60 minutes;
-            strikes = 5;
+            cooldown = 60 seconds;
+            strikes = 3;
         }
         if (protectionLevel == ProtectionLevel.EXTREME) {
-            cooldown = 24 hours;
+            cooldown = 5 minutes;
             strikes = 3;
         }
 
