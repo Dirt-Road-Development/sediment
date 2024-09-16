@@ -31,25 +31,28 @@ contract BotProtection is Authority {
      * @param addr The address to check for bot activity.
      */
     modifier checkForBot(address addr) {
-        if (level == ProtectionLevel.OFF) _;
-        
-        require(!limits[addr].isBlacklisted, "Address is blacklisted");
-        
-        bool ok = uint64(block.timestamp) - limits[addr].lastRequest >= cooldown;
-        
-        if (!ok) {
-            if (limits[addr].strikes + 1 >= strikes) {
-                if (useBlacklist) limits[addr].isBlacklisted = true;
-                emit AddToBlacklist(addr);
+        if (level == ProtectionLevel.OFF) {
 
-            } else {
-                limits[addr].strikes++;
-                emit AddStrike(addr, limits[addr].strikes);
-            }
-            return;
         } else {
-            limits[addr].strikes = 0;
-            limits[addr].lastRequest = uint64(block.timestamp); // Update after successful check
+        
+            require(!limits[addr].isBlacklisted, "Address is blacklisted");
+            
+            bool ok = uint64(block.timestamp) - limits[addr].lastRequest >= cooldown;
+            
+            if (!ok) {
+                if (limits[addr].strikes + 1 >= strikes) {
+                    if (useBlacklist) limits[addr].isBlacklisted = true;
+                    emit AddToBlacklist(addr);
+
+                } else {
+                    limits[addr].strikes++;
+                    emit AddStrike(addr, limits[addr].strikes);
+                }
+                return;
+            } else {
+                limits[addr].strikes = 0;
+                limits[addr].lastRequest = uint64(block.timestamp); // Update after successful check
+            }
         }
 
         _;
